@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GorillaRoasters.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#000000" Padding="24" CornerRadius="0">
+            <Label Text="Gorilla Roasters" HorizontalTextAlignment="Center" TextColor="White"
+                   FontSize="28" FontFamily="Billabong" />
+        </Frame>
+        <Frame BackgroundColor="White" Margin="40,10,40,10" HasShadow="True" Padding="0,0,0,0" HeightRequest="150">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="CoffeeCup.jpg" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"></Image>
+                <Label Text="Jungle Expresso" Grid.Column="1" Grid.Row="0" FontSize="20" TextColor="#24130c" Margin="0,10,0,0"></Label>
+                <Label Text="By UXDivers" Grid.Column="1" Grid.Row="1" FontSize="10" TextColor="#24130c" Margin="0,0,0,0" Opacity="0.15"></Label>
+                <Label Text="$ 2.75" Grid.Column="1" Grid.Row="2" FontSize="30" FontAttributes="Bold" TextColor="#24130c" Margin="0,0,0,0"></Label>
+            </Grid>
+        </Frame>
+        <Frame BackgroundColor="White" Margin="40,10,40,10" HasShadow="True" Padding="0,0,0,0" HeightRequest="200">
+            
+        </Frame>
+    </StackLayout>
+
+</ContentPage>
