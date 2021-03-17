@@ -1,8 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GorillaRoasters.App">
+<Application
+    x:Class="GorillaRoasters.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="ButtonColor">
+                #cabaa3
+            </Color>
+            <Style x:Key="BasicButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
+                <Setter Property="TextTransform" Value="None" />
+            </Style>
+            <Style
+                x:Key="RoundedButton"
+                BasedOn="{StaticResource BasicButton}"
+                TargetType="Button">
+                <Setter Property="Margin" Value="40,10,30,10" />
+                <Setter Property="Padding" Value="0,0,0,0" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="Icon" TargetType="Image">
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+            <Style x:Key="CoffeeParams" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="CoffeeInfo" TargetType="Label">
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="Padding" Value="0,0,0,0" />
+                <Setter Property="TextColor" Value="#24130c" />
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="Margin" Value="30,0,30,0" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="Opacity" Value="0.05" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
