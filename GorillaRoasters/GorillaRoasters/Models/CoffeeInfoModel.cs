@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace GorillaRoasters.Models
@@ -10,6 +11,6 @@ namespace GorillaRoasters.Models
         public string From { get; set; }
         public string Price { get; set; }
         public string ImageSrc { get; set; }
-        public PreparationParamsModel PreparationParams { get; set; }
+        public List<PreparationParamModel> PreparationParams { get; set; }
     }
 }

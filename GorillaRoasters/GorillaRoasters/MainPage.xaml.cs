@@ -12,18 +12,13 @@ namespace GorillaRoasters
 {
     public partial class MainPage : ContentPage
     {
-        public StartPageViewModel ViewModel { get; set; }
+        public MainPageViewModel ViewModel { get; set; }
 
         public MainPage()
         {
-            ViewModel = new StartPageViewModel();
+            ViewModel = new MainPageViewModel();
             InitializeComponent();
             this.BindingContext = ViewModel;
-        }
-
-        private void OnNextButtonClick(object sender, EventArgs e)
-        {
-            ViewModel.GoToNext();
         }
     }
 }

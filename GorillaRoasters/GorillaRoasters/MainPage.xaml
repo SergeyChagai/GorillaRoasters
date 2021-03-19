@@ -3,9 +3,10 @@
     x:Class="GorillaRoasters.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:GorillaRoasters.Models"
     xmlns:strings="clr-namespace:GorillaRoasters.Resources"
     xmlns:viewmodels="clr-namespace:GorillaRoasters.ViewModels"
-    x:DataType="viewmodels:StartPageViewModel"
+    x:DataType="viewmodels:MainPageViewModel"
     BackgroundImageSource="Background.jpg">
 
     <StackLayout>
@@ -77,91 +78,14 @@
             BackgroundColor="White"
             HasShadow="True"
             HeightRequest="200">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="1" />
-                    <RowDefinition />
-                    <RowDefinition Height="1" />
-                    <RowDefinition />
-                    <RowDefinition Height="1" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Image
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Source="intensity.ico&gt;"
-                    Style="{StaticResource Icon}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Style="{StaticResource CoffeeParams}"
-                    Text="{x:Static strings:Strings.Intensity}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Style="{StaticResource RoundedButton}"
-                    Text="{Binding CoffeeInfoModel.PreparationParams.Intensity}" />
 
-                <BoxView Grid.Row="1" Grid.ColumnSpan="3" />
-
-                <Image
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Source="acidity.jpg&gt;"
-                    Style="{StaticResource Icon}" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Style="{StaticResource CoffeeParams}"
-                    Text="{x:Static strings:Strings.Acidity}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Style="{StaticResource RoundedButton}"
-                    Text="{Binding CoffeeInfoModel.PreparationParams.Acidity}" />
-
-                <BoxView Grid.Row="3" Grid.ColumnSpan="3" />
-
-                <Image
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Source="preparation.jpg&gt;"
-                    Style="{StaticResource Icon}" />
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Style="{StaticResource CoffeeParams}"
-                    Text="{x:Static strings:Strings.Preparation}" />
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="2"
-                    Style="{StaticResource RoundedButton}"
-                    Text="{Binding CoffeeInfoModel.PreparationParams.Preparation}" />
-
-                <BoxView Grid.Row="5" Grid.ColumnSpan="3" />
-
-                <Image
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Source="size.jpg&gt;"
-                    Style="{StaticResource Icon}" />
-                <Label
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Style="{StaticResource CoffeeParams}"
-                    Text="{x:Static strings:Strings.Size}" />
-                <Button
-                    Grid.Row="6"
-                    Grid.Column="2"
-                    Style="{StaticResource RoundedButton}"
-                    Text="{Binding CoffeeInfoModel.PreparationParams.Size}" />
-            </Grid>
+            <CollectionView ItemsSource="{Binding PreparationParams}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding }" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Frame>
         <Button
             Margin="20,5,20,0"
@@ -180,7 +104,7 @@
             TextTransform="None" />
         <Button
             Margin="20,5,20,20"
-            Clicked="OnNextButtonClick"
+            Command="{Binding ChangeItem}"
             FontAttributes="Bold"
             Style="{StaticResource BasicButton}"
             Text="{x:Static strings:Strings.ButtonToNext}" />
