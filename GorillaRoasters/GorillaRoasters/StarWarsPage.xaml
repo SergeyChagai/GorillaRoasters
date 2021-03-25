@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GorillaRoasters.StarWarsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundImageSource="https://i.imgur.com/1wGWiXU.jpeg">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="0" Padding="0">
+            <Label
+                FontSize="24"
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Tatuin!"
+                TextColor="White"
+                VerticalOptions="Start" />
+            <Frame
+                Margin="10,5,10,10"
+                HeightRequest="400"
+                Opacity="0.5">
+                <CollectionView ItemsSource="{Binding Characters}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Height}" />
+                                <Label Text="{Binding Mass}" />
+                                <Label Text="{Binding Gender}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Button
+                Margin="10,5,10,0"
+                Command="{Binding GetCharacters}"
+                FontSize="24"
+                Opacity="0.9"
+                Style="{StaticResource BasicButton}"
+                Text="Get" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

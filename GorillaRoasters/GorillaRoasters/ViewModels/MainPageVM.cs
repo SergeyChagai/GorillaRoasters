@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace GorillaRoasters.ViewModels
 {
-    public class MainPageViewModel: INotifyPropertyChanged
+    public class MainPageVM: INotifyPropertyChanged
     {
         private CoffeeInfoModel _coffeeInfoModel;
         private List<CoffeeInfoModel> _coffeeList;
@@ -36,7 +36,7 @@ namespace GorillaRoasters.ViewModels
             }
         }
         public ICommand ChangeItem { get; set; }
-        public MainPageViewModel()
+        public MainPageVM()
         {
             _index = 0;
             _coffeeList = new List<CoffeeInfoModel>();
@@ -99,7 +99,18 @@ namespace GorillaRoasters.ViewModels
           );
             CoffeeInfoModel = _coffeeList[_index];
             PreparationParams = CoffeeInfoModel.PreparationParams;
-            ChangeItem = new Command(GoToNext);
+            ChangeItem = new Command(GoToItem);
+        }
+        private void GoToItem(object s = null)
+        {
+            if ((string)s == "Right")
+            {
+                GoToPrevious();
+            }
+            else
+                GoToNext();
+            CoffeeInfoModel = _coffeeList[_index];
+            PreparationParams = CoffeeInfoModel.PreparationParams;
         }
         private void GoToNext()
         {
@@ -107,9 +118,15 @@ namespace GorillaRoasters.ViewModels
                 _index = 0;
             else
                 _index++;
-            CoffeeInfoModel = _coffeeList[_index];
-            PreparationParams = CoffeeInfoModel.PreparationParams;
         }
+        private void GoToPrevious()
+        {
+            if (_index > 0)
+                _index--;
+            else
+                _index = _coffeeList.Count - 1;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

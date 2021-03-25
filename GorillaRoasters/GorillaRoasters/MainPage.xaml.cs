@@ -12,13 +12,19 @@ namespace GorillaRoasters
 {
     public partial class MainPage : ContentPage
     {
-        public MainPageViewModel ViewModel { get; set; }
+        public MainPageVM ViewModel { get; set; }
 
         public MainPage()
         {
-            ViewModel = new MainPageViewModel();
+            ViewModel = new MainPageVM();
             InitializeComponent();
-            this.BindingContext = ViewModel;
+            BindingContext = ViewModel;
+            
+        }
+
+        private void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new StarWarsPage());
         }
     }
 }
