@@ -16,12 +16,10 @@ namespace GorillaRoasters.ViewModels
 {
     public class StarWarsPageVM: INotifyPropertyChanged
     {
-        public readonly StarWarsCoolService Service;
+        public IStarWarsService Service;
         private CharacterModel _character;
         public ICommand GetCharactersCommand { get; set; }
         public ICommand PushCharacterCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CharacterModel Character
         {
@@ -35,11 +33,13 @@ namespace GorillaRoasters.ViewModels
         public ObservableCollection<CharacterModel> Characters { get; set; }
         public StarWarsPageVM()
         {
-            Service = new StarWarsCoolService();
+            Service = new StarWarsSimpleService();
             GetCharactersCommand = new Command(GetCharactersCommandExecute);
             PushCharacterCommand = new Command(PushCharacterCommandExecute);
             Characters = new ObservableCollection<CharacterModel>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

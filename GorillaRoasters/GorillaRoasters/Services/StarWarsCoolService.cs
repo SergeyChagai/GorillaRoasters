@@ -3,12 +3,13 @@ using Newtonsoft.Json;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GorillaRoasters.Services
 {
-    public class StarWarsCoolService
+    public class StarWarsCoolService: IStarWarsService
     {
         public IStarWarsApi Api { get; set; }
         public StarWarsCoolService()
@@ -19,6 +20,7 @@ namespace GorillaRoasters.Services
         public async Task<CaractersResponseModel> GetCharacters()
         {
             var message = await Api.GetCharacters();
+            Debug.WriteLine("Rest API use for Get");
             var json = await message.Content.ReadAsStringAsync();
             CaractersResponseModel result = new CaractersResponseModel();
             if (message.IsSuccessStatusCode)
@@ -29,6 +31,7 @@ namespace GorillaRoasters.Services
         public async Task<bool> PushCharacter(CharacterInfoModel characterInfo)
         {
             var message = await Api.PushCharacter(characterInfo);
+            Debug.WriteLine("Rest API use for Post");
             if (message.IsSuccessStatusCode)
                 return true;
             return false;

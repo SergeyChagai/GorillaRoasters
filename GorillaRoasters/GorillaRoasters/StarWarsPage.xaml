@@ -26,6 +26,12 @@
                 Text="Welcome to Tatuin!"
                 TextColor="White"
                 VerticalOptions="Start" />
+            <Picker Title="Services" SelectedIndexChanged="Picker_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Simple</x:String>
+                    <x:String>Refit</x:String>
+                </Picker.Items>
+            </Picker>
             <Frame
                 Margin="10,5,10,10"
                 HeightRequest="400"
