@@ -18,5 +18,6 @@ namespace GorillaRoasters
             InitializeComponent();
             BindingContext = new StarWarsPageVM();
         }
+
     }
 }
