@@ -1,9 +1,12 @@
-﻿using GorillaRoasters.Models.StarWarModels.UIModels;
+﻿using GorillaRoasters.Models.StarWarModels.DALModels;
+using GorillaRoasters.Models.StarWarModels.UIModels;
 using GorillaRoasters.Services;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -13,9 +16,10 @@ namespace GorillaRoasters.ViewModels
 {
     public class StarWarsPageVM: INotifyPropertyChanged
     {
-        private readonly StarWarsService _service;
+        public readonly StarWarsCoolService Service;
         private CharacterModel _character;
-        public ICommand GetCharacters { get; set; }
+        public ICommand GetCharactersCommand { get; set; }
+        public ICommand PushCharacterCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,17 +35,18 @@ namespace GorillaRoasters.ViewModels
         public ObservableCollection<CharacterModel> Characters { get; set; }
         public StarWarsPageVM()
         {
-            _service = new StarWarsService();
-            GetCharacters = new Command(GetCharactersExecute);
+            Service = new StarWarsCoolService();
+            GetCharactersCommand = new Command(GetCharactersCommandExecute);
+            PushCharacterCommand = new Command(PushCharacterCommandExecute);
             Characters = new ObservableCollection<CharacterModel>();
         }
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private async void GetCharactersExecute()
+        private async void GetCharactersCommandExecute()
         {
-            var response = await _service.GetCharacters();
+            var response = await Service.GetCharacters();
             if (response.Results == null)
                 return;
             foreach(var model in response.Results)
@@ -55,6 +60,18 @@ namespace GorillaRoasters.ViewModels
                 };
                 Characters.Add(character);
             }
+        }
+        private async void PushCharacterCommandExecute()
+        {
+            var character = new CharacterInfoModel()
+            {
+                Name = "Chubaka",
+                Height = 270,
+                Mass = 120,
+                Gender = "male"
+            };
+            string message = await Service.PushCharacter(character) ? "OK" : "NE OK";
+            Debug.WriteLine(message);
         }
     }
 }

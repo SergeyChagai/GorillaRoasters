@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GorillaRoasters.Models.StarWarModels.DALModels
 {
-    class CaractersResponseModel
+    public class CaractersResponseModel
     {
         [JsonProperty("count")]
         public int Count { get; set; }

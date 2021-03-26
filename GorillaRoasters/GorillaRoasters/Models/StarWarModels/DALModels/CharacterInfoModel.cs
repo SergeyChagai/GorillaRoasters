@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GorillaRoasters.Models.StarWarModels.DALModels
 {
-    class CharacterInfoModel
+    public class CharacterInfoModel
     {
         [JsonProperty("name")]
         public string Name { get; set; }

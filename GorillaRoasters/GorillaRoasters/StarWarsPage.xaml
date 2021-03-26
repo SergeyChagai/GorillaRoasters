@@ -9,6 +9,14 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="Opacity" Value="1" />
         </Style>
+        <Style
+            x:Key="RequestButton"
+            BasedOn="{StaticResource BasicButton}"
+            TargetType="Button">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Opacity" Value="0.9" />
+            <Setter Property="Margin" Value="10,5,10,0" />
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="0" Padding="0">
@@ -21,7 +29,7 @@
             <Frame
                 Margin="10,5,10,10"
                 HeightRequest="400"
-                Opacity="0.5">
+                Opacity="0.9">
                 <CollectionView ItemsSource="{Binding Characters}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -36,12 +44,13 @@
                 </CollectionView>
             </Frame>
             <Button
-                Margin="10,5,10,0"
-                Command="{Binding GetCharacters}"
-                FontSize="24"
-                Opacity="0.9"
-                Style="{StaticResource BasicButton}"
+                Command="{Binding GetCharactersCommand}"
+                Style="{StaticResource RequestButton}"
                 Text="Get" />
+            <Button
+                Command="{Binding PushCharacterCommand}"
+                Style="{StaticResource RequestButton}"
+                Text="Push" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
