@@ -30,6 +30,7 @@ namespace GorillaRoasters.ViewModels
                 NotifyPropertyChanged(nameof(Character));
             }
         }
+       
         public ObservableCollection<CharacterModel> Characters { get; set; }
         public StarWarsPageVM()
         {
@@ -44,10 +45,10 @@ namespace GorillaRoasters.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private async void GetCharactersCommandExecute()
+        public async void GetCharactersCommandExecute()
         {
             var response = await Service.GetCharacters();
-            if (response.Results == null)
+            if (response?.Results == null)
                 return;
             foreach(var model in response.Results)
             {
@@ -61,8 +62,9 @@ namespace GorillaRoasters.ViewModels
                 Characters.Add(character);
             }
         }
-        private async void PushCharacterCommandExecute()
+        public async void PushCharacterCommandExecute()
         {
+            
             var character = new CharacterInfoModel()
             {
                 Name = "Chubaka",
@@ -72,6 +74,17 @@ namespace GorillaRoasters.ViewModels
             };
             string message = await Service.PushCharacter(character) ? "OK" : "NE OK";
             Debug.WriteLine(message);
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj is StarWarsPageVM viewModel)
+            {
+                return viewModel.Service == Service &&
+                    viewModel.GetCharactersCommand == GetCharactersCommand &&
+                    viewModel.PushCharacterCommand == PushCharacterCommand &&
+                    viewModel.Characters == Characters;
+            }
+            return false;
         }
     }
 }

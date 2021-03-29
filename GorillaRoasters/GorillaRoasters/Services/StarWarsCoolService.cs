@@ -14,18 +14,24 @@ namespace GorillaRoasters.Services
         public IStarWarsApi Api { get; set; }
         public StarWarsCoolService()
         {
+            var settings = new RefitSettings();
+
             Api = RestService.For<IStarWarsApi>("https://swapi.dev/api");
+            
         }
 
         public async Task<CaractersResponseModel> GetCharacters()
         {
             var message = await Api.GetCharacters();
             Debug.WriteLine("Rest API use for Get");
+
             var json = await message.Content.ReadAsStringAsync();
             CaractersResponseModel result = new CaractersResponseModel();
             if (message.IsSuccessStatusCode)
                 result = JsonConvert.DeserializeObject<CaractersResponseModel>(json);
             return result;
+            //var result = await Api.GetCharacters();
+            //return result;
         }
 
         public async Task<bool> PushCharacter(CharacterInfoModel characterInfo)

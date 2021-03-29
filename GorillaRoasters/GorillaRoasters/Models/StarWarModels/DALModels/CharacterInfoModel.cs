@@ -34,25 +34,5 @@ namespace GorillaRoasters.Models.StarWarModels.DALModels
         [JsonProperty("homeworld")]
         public string Homeworld { get; set; }
 
-        [JsonProperty("films")]
-        public List<string> Films { get; set; }
-
-        [JsonProperty("species")]
-        public List<string> Species { get; set; }
-
-        [JsonProperty("vehicles")]
-        public List<string> Vehicles { get; set; }
-
-        [JsonProperty("starships")]
-        public List<string> Starships { get; set; }
-
-        [JsonProperty("created")]
-        public DateTime Created { get; set; }
-
-        [JsonProperty("edited")]
-        public DateTime Edited { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }

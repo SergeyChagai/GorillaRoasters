@@ -12,6 +12,7 @@ namespace GorillaRoasters.Services
     {
         [Get("/people/")]
         Task<HttpResponseMessage> GetCharacters();
+       
         [Post("/people/")]
         Task<HttpResponseMessage> PushCharacter(CharacterInfoModel characterInfo);
     }

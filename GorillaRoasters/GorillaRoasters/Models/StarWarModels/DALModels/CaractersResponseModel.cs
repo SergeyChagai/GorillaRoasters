@@ -13,9 +13,6 @@ namespace GorillaRoasters.Models.StarWarModels.DALModels
         [JsonProperty("next")]
         public string Next { get; set; }
 
-        [JsonProperty("previous")]
-        public object Previous { get; set; }
-
         [JsonProperty("results")]
         public List<CharacterInfoModel> Results { get; set; }
     }
