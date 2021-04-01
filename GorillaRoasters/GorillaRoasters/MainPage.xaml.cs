@@ -26,5 +26,10 @@ namespace GorillaRoasters
         {
             Navigation.PushAsync(new StarWarsPage());
         }
+
+        private async void AnimateButton_Clicked(object sender, EventArgs e)
+        {
+            await AnimateButton.RotateTo(360, 1000);
+        }
     }
 }

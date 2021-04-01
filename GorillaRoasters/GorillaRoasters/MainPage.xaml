@@ -3,6 +3,7 @@
     x:Class="GorillaRoasters.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:frame="clr-namespace:GorillaRoasters.CustumViews"
     xmlns:strings="clr-namespace:GorillaRoasters.Resources"
     BackgroundImageSource="Background.jpg">
     <NavigationPage.TitleView>
@@ -14,66 +15,12 @@
             VerticalTextAlignment="Center" />
     </NavigationPage.TitleView>
     <StackLayout>
+        <frame:CoffeeFrame
+            CoffeeName="{Binding CoffeeInfoModel.Name}"
+            ImageSrc="{Binding CoffeeInfoModel.ImageSrc}"
+            Price="{Binding CoffeeInfoModel.Price}"
+            Producer="{Binding CoffeeInfoModel.From}" />
 
-        <Frame
-            Margin="20,10,20,10"
-            Padding="0,0,0,0"
-            BackgroundColor="White"
-            HasShadow="True"
-            HeightRequest="150">
-            <Frame.GestureRecognizers>
-                <SwipeGestureRecognizer
-                    Command="{Binding ChangeItem}"
-                    CommandParameter="Left"
-                    Direction="Left" />
-                <SwipeGestureRecognizer
-                    Command="{Binding ChangeItem}"
-                    CommandParameter="Right"
-                    Direction="Right" />
-                <TapGestureRecognizer Command="{Binding ChangeItem}" />
-            </Frame.GestureRecognizers>
-            <Grid Margin="0,0,0,0" Padding="0,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Image
-                    Grid.Row="0"
-                    Grid.RowSpan="3"
-                    Grid.Column="0"
-                    Margin="10,10"
-                    Source="{Binding CoffeeInfoModel.ImageSrc}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    Style="{StaticResource CoffeeInfo}"
-                    Text="{Binding CoffeeInfoModel.Name}"
-                    VerticalTextAlignment="End" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    FontSize="10"
-                    Opacity="0.15"
-                    Style="{StaticResource CoffeeInfo}"
-                    Text="{Binding CoffeeInfoModel.From}"
-                    VerticalTextAlignment="Start" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    FontAttributes="Bold"
-                    FontSize="35"
-                    Style="{StaticResource CoffeeInfo}"
-                    Text="{Binding CoffeeInfoModel.Price}"
-                    VerticalTextAlignment="Start" />
-            </Grid>
-        </Frame>
         <Frame
             Margin="20,0,20,10"
             Padding="0,10,0,10"
@@ -116,6 +63,8 @@
             </CollectionView>
         </Frame>
         <Button
+            x:Name="AnimateButton"
+            Clicked="AnimateButton_Clicked"
             Margin="20,5,20,0"
             FontAttributes="Bold"
             FontSize="16"
