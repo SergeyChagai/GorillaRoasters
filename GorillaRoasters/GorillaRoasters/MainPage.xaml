@@ -3,7 +3,7 @@
     x:Class="GorillaRoasters.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:frame="clr-namespace:GorillaRoasters.CustumViews"
+    xmlns:customViews="clr-namespace:GorillaRoasters.CustumViews"
     xmlns:strings="clr-namespace:GorillaRoasters.Resources"
     BackgroundImageSource="Background.jpg">
     <NavigationPage.TitleView>
@@ -15,7 +15,7 @@
             VerticalTextAlignment="Center" />
     </NavigationPage.TitleView>
     <StackLayout>
-        <frame:CoffeeFrame
+        <customViews:CoffeeFrame
             CoffeeName="{Binding CoffeeInfoModel.Name}"
             ImageSrc="{Binding CoffeeInfoModel.ImageSrc}"
             Price="{Binding CoffeeInfoModel.Price}"
@@ -62,29 +62,37 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Frame>
-        <Button
-            x:Name="AnimateButton"
-            Clicked="AnimateButton_Clicked"
-            Margin="20,5,20,0"
-            FontAttributes="Bold"
-            FontSize="16"
-            Style="{StaticResource BasicButton}"
-            Text="{x:Static strings:Strings.ButtonToPlaceOrder}" />
-        <Button
-            Margin="20,5,20,0"
-            BackgroundColor="Transparent"
-            BorderColor="#d5d5d5"
-            BorderWidth="1"
-            FontAttributes="Bold"
-            FontSize="16"
-            Text="{x:Static strings:Strings.ButtonToAddToFavorites}"
-            TextTransform="None" />
-        <Button
-            Margin="20,5,20,20"
-            Clicked="OnNextButtonClicked"
-            FontAttributes="Bold"
-            Style="{StaticResource BasicButton}"
-            Text="{x:Static strings:Strings.ButtonToNext}" />
+        <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
+            <customViews:GradientButton
+                x:Name="AnimateButton"
+                Margin="0"
+                Clicked="AnimateButton_Clicked"
+                FontAttributes="Bold"
+                FontSize="16"
+                Style="{StaticResource BasicButton}"
+                Text="{x:Static strings:Strings.ButtonToPlaceOrder}" />
+        </customViews:ButtonFrame>
+
+        <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
+            <customViews:GradientButton
+                Margin="0"
+                BackgroundColor="Transparent"
+                BorderColor="#d5d5d5"
+                BorderWidth="1"
+                FontAttributes="Bold"
+                FontSize="16"
+                Style="{StaticResource BasicButton}"
+                Text="{x:Static strings:Strings.ButtonToAddToFavorites}" />
+        </customViews:ButtonFrame>
+
+        <customViews:ButtonFrame Margin="20,5,20,20" Padding="0">
+            <customViews:GradientButton
+                Margin="0"
+                Clicked="OnNextButtonClicked"
+                FontAttributes="Bold"
+                Style="{StaticResource BasicButton}"
+                Text="{x:Static strings:Strings.ButtonToNext}" />
+        </customViews:ButtonFrame>
     </StackLayout>
 
 </ContentPage>

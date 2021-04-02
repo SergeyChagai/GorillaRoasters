@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace GorillaRoasters.CustumViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CoffeeFrame : ContentView
+    public partial class CoffeeFrame : Frame
     {
         public static readonly BindableProperty ImageSrcProperty =
             BindableProperty.Create
