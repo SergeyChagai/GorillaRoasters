@@ -22,14 +22,21 @@ namespace GorillaRoasters
             
         }
 
-        private void OnNextButtonClicked(object sender, EventArgs e)
+        private async void OnNextButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new StarWarsPage());
+            await Shell.Current.GoToAsync("//starWarsPage");
         }
 
         private async void AnimateButton_Clicked(object sender, EventArgs e)
         {
             await AnimateButton.RotateTo(360, 1000);
         }
+
+        private void OnAddToFavoriteButtonClicked(object sender, EventArgs e)
+        {
+            RatingPopup.IsVisible = true;
+        }
+
+       
     }
 }

@@ -10,7 +10,7 @@ namespace GorillaRoasters
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new ShellPage();
         }
 
         protected override void OnStart()

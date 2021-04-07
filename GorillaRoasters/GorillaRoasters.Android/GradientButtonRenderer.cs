@@ -67,7 +67,12 @@ namespace GorillaRoasters.Droid
             var paint = new Paint();
             paint.SetShader(gradient);
             var rect = new RectF(Left, Top, Right, Bottom);
+            var borderPaint = new Paint();
+            borderPaint.SetShadowLayer(10f, 0, 0, Android.Graphics.Color.Black);
+            borderPaint.SetStyle(Paint.Style.Stroke);
+            var borderRect = new RectF(Left, Top, Right, Bottom);
             canvas.DrawRect(rect, paint);
+            canvas.DrawRect(borderRect, borderPaint);
             canvas.DrawText(Element.Text, Width / 2, 2 * Height / 3, textPaint);
         }
     }

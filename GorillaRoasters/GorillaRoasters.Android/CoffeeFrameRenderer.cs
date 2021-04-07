@@ -35,7 +35,7 @@ namespace GorillaRoasters.Droid
             var paint = new Android.Graphics.Paint()
             {
                 Dither = true,
-                StrokeWidth = 1,
+                StrokeWidth = 4,
                 AntiAlias = true,
                 Color = Android.Graphics.Color.Gray
             };

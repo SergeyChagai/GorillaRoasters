@@ -14,85 +14,94 @@
             Text="GorillaRoasters"
             VerticalTextAlignment="Center" />
     </NavigationPage.TitleView>
-    <StackLayout>
-        <customViews:CoffeeFrame
-            CoffeeName="{Binding CoffeeInfoModel.Name}"
-            ImageSrc="{Binding CoffeeInfoModel.ImageSrc}"
-            Price="{Binding CoffeeInfoModel.Price}"
-            Producer="{Binding CoffeeInfoModel.From}" />
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <customViews:CoffeeFrame
+                CoffeeName="{Binding CoffeeInfoModel.Name}"
+                ImageSrc="{Binding CoffeeInfoModel.ImageSrc}"
+                Price="{Binding CoffeeInfoModel.Price}"
+                Producer="{Binding CoffeeInfoModel.From}" />
 
-        <Frame
-            Margin="20,0,20,10"
-            Padding="0,10,0,10"
-            BackgroundColor="White"
-            HasShadow="True"
-            HeightRequest="200">
+            <Frame
+                Margin="20,0,20,10"
+                Padding="0,10,0,10"
+                BackgroundColor="White"
+                HasShadow="True"
+                HeightRequest="200">
 
-            <CollectionView x:Name="collectionView" ItemsSource="{Binding PreparationParams}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout
-                            Margin="0,0,0,0"
-                            Padding="0,0,0,0"
-                            Orientation="Vertical"
-                            Spacing="0">
+                <CollectionView x:Name="collectionView" ItemsSource="{Binding PreparationParams}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
                             <StackLayout
                                 Margin="0,0,0,0"
-                                HeightRequest="50"
-                                Orientation="Horizontal"
+                                Padding="0,0,0,0"
+                                Orientation="Vertical"
                                 Spacing="0">
-                                <Image
-                                    Margin="5,5,10,5"
-                                    HeightRequest="40"
-                                    Source="{Binding IconSrc}"
-                                    Style="{StaticResource Icon}"
-                                    WidthRequest="40" />
-                                <Label
-                                    Style="{StaticResource CoffeeParams}"
-                                    Text="{Binding Name}"
-                                    WidthRequest="170" />
-                                <Button
-                                    Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ChangeItem}"
-                                    Style="{StaticResource RoundedButton}"
-                                    Text="{Binding Value}" />
+                                <StackLayout
+                                    Margin="0,0,0,0"
+                                    HeightRequest="50"
+                                    Orientation="Horizontal"
+                                    Spacing="0">
+                                    <Image
+                                        Margin="5,5,10,5"
+                                        HeightRequest="40"
+                                        Source="{Binding IconSrc}"
+                                        Style="{StaticResource Icon}"
+                                        WidthRequest="40" />
+                                    <Label
+                                        Style="{StaticResource CoffeeParams}"
+                                        Text="{Binding Name}"
+                                        WidthRequest="170" />
+                                    <Button
+                                        Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ChangeItem}"
+                                        Style="{StaticResource RoundedButton}"
+                                        Text="{Binding Value}" />
+                                </StackLayout>
+                                <BoxView HeightRequest="1" />
                             </StackLayout>
-                            <BoxView HeightRequest="1" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Frame>
-        <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
-            <customViews:GradientButton
-                x:Name="AnimateButton"
-                Margin="0"
-                Clicked="AnimateButton_Clicked"
-                FontAttributes="Bold"
-                FontSize="16"
-                Style="{StaticResource BasicButton}"
-                Text="{x:Static strings:Strings.ButtonToPlaceOrder}" />
-        </customViews:ButtonFrame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
+                <customViews:GradientButton
+                    x:Name="AnimateButton"
+                    Margin="0"
+                    Clicked="AnimateButton_Clicked"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Style="{StaticResource BasicButton}"
+                    Text="{x:Static strings:Strings.ButtonToPlaceOrder}" />
+            </customViews:ButtonFrame>
 
-        <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
-            <customViews:GradientButton
-                Margin="0"
-                BackgroundColor="Transparent"
-                BorderColor="#d5d5d5"
-                BorderWidth="1"
-                FontAttributes="Bold"
-                FontSize="16"
-                Style="{StaticResource BasicButton}"
-                Text="{x:Static strings:Strings.ButtonToAddToFavorites}" />
-        </customViews:ButtonFrame>
+            <customViews:ButtonFrame Margin="20,5,20,0" Padding="0">
+                <customViews:GradientButton
+                    Margin="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#d5d5d5"
+                    BorderWidth="1"
+                    Clicked="OnAddToFavoriteButtonClicked"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Style="{StaticResource BasicButton}"
+                    Text="{x:Static strings:Strings.ButtonToAddToFavorites}" />
+            </customViews:ButtonFrame>
 
-        <customViews:ButtonFrame Margin="20,5,20,20" Padding="0">
-            <customViews:GradientButton
-                Margin="0"
-                Clicked="OnNextButtonClicked"
-                FontAttributes="Bold"
-                Style="{StaticResource BasicButton}"
-                Text="{x:Static strings:Strings.ButtonToNext}" />
-        </customViews:ButtonFrame>
-    </StackLayout>
+            <customViews:ButtonFrame Margin="20,5,20,20" Padding="0">
+                <customViews:GradientButton
+                    Margin="0"
+                    Clicked="OnNextButtonClicked"
+                    FontAttributes="Bold"
+                    Style="{StaticResource BasicButton}"
+                    Text="{x:Static strings:Strings.ButtonToNext}" />
+            </customViews:ButtonFrame>
+        </StackLayout>
+        <customViews:RatingPopup x:Name="RatingPopup" />
+        <!--<customViews:RatingView
+            AbsoluteLayout.LayoutBounds="0,0,0.5,0.1"
+            AbsoluteLayout.LayoutFlags="All"
+            Source="StarFavorite.png" />-->
+    </AbsoluteLayout>
+
 
 </ContentPage>
