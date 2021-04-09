@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="GorillaRoasters.Pages.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:stateContainer="clr-namespace:GorillaRoasters.StateContainers.LoginPageSC">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="BasicLoginButton" TargetType="Button">
@@ -11,7 +12,7 @@
                 <Setter Property="HeightRequest" Value="60" />
             </Style>
             <Style
-                x:Key="GradientButton"
+                x:Key="GradientButtonWhenConnected"
                 BasedOn="{StaticResource BasicLoginButton}"
                 TargetType="Button">
                 <Setter Property="TextColor" Value="White" />
@@ -24,67 +25,132 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style
+                x:Key="GradientButtonWhenNotConnected"
+                BasedOn="{StaticResource BasicLoginButton}"
+                TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#c7b99f" />
+                            <GradientStop Offset="1" Color="#afa694" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-            <GradientStop Offset="0" Color="{StaticResource GradientsBlueColor}" />
-            <GradientStop Offset="1" Color="{StaticResource GradientsGreenColor}" />
-        </LinearGradientBrush>
-    </ContentPage.Background>
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                Margin="0,20,0,0"
-                FontSize="18"
-                HorizontalOptions="Center"
-                Text="Sign in to Your Account"
-                TextColor="White"
-                VerticalOptions="Start" />
-            <Image
-                Margin="50,10,20,10"
-                HeightRequest="200"
-                Source="CoffeeLogo" />
-            <Button Style="{StaticResource GradientButton}" Text="Username" />
-            <Button Style="{StaticResource GradientButton}" Text="Password" />
-            <Button
-                x:Name="LoginButton"
-                Clicked="LoginButton_Clicked"
-                Style="{StaticResource BasicLoginButton}"
-                Text="Log in"
-                TextColor="{StaticResource GradientsBlueColor}">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="White" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Focused">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="Black" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </Button>
-            <Label
-                Margin="0,0,0,40"
-                HorizontalOptions="Center"
-                VerticalOptions="EndAndExpand">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="Don't have an account? " TextColor="White" />
-                            <Span
-                                FontAttributes="Bold"
-                                Text="Sign up"
-                                TextColor="White" />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
 
-        </StackLayout>
+    <ContentPage.Content>
+        <stateContainer:StateContainer State="{Binding PageStateId}">
+            <stateContainer:StateCondition State="Connected">
+                <StackLayout>
+                    <StackLayout.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="{StaticResource GradientsBlueColor}" />
+                            <GradientStop Offset="1" Color="{StaticResource GradientsGreenColor}" />
+                        </LinearGradientBrush>
+                    </StackLayout.Background>
+                    <StackLayout Orientation="Horizontal">
+                        <Button
+                            Margin="20,25,20,20"
+                            BackgroundColor="Transparent"
+                            HeightRequest="10"
+                            ImageSource="CloseButtonIcon"
+                            WidthRequest="10" />
+                        <Label
+                            Margin="0,20,60,0"
+                            FontSize="18"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Sign in to Your Account"
+                            TextColor="White"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+                    <Image
+                        Margin="50,10,20,10"
+                        HeightRequest="200"
+                        Source="CoffeeLogo" />
+                    <Button Style="{StaticResource GradientButtonWhenConnected}" Text="Username" />
+                    <Button Style="{StaticResource GradientButtonWhenConnected}" Text="Password" />
+                    <Button
+                        x:Name="LoginButton"
+                        BackgroundColor="White"
+                        Style="{StaticResource BasicLoginButton}"
+                        Text="Log in"
+                        TextColor="{StaticResource GradientsBlueColor}" />
+                    <Label
+                        Margin="0,0,0,40"
+                        HorizontalOptions="Center"
+                        VerticalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Don't have an account? " TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        Text="Sign up"
+                                        TextColor="White" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </stateContainer:StateCondition>
+            <stateContainer:StateCondition State="NotConnected">
+                <StackLayout>
+                    <StackLayout.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="Wheat" />
+                            <GradientStop Offset="1" Color="Gray" />
+                        </LinearGradientBrush>
+                    </StackLayout.Background>
+                    <StackLayout Orientation="Horizontal">
+                        <Button
+                            Margin="20,25,20,20"
+                            BackgroundColor="Transparent"
+                            HeightRequest="10"
+                            ImageSource="CloseButtonIcon"
+                            WidthRequest="10" />
+                        <Label
+                            Margin="0,20,60,0"
+                            FontSize="18"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Sign in to Your Account"
+                            TextColor="White"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+                    <Image
+                        Margin="50,10,20,10"
+                        HeightRequest="200"
+                        Source="CoffeeLogo" />
+                    <Button Style="{StaticResource GradientButtonWhenNotConnected}" Text="Username" />
+                    <Button Style="{StaticResource GradientButtonWhenNotConnected}" Text="Password" />
+                    <Button
+                        BackgroundColor="White"
+                        IsEnabled="False"
+                        Style="{StaticResource BasicLoginButton}"
+                        Text="Log in"
+                        TextColor="{StaticResource GradientsBlueColor}" />
+                    <Label
+                        Margin="0,0,0,40"
+                        HorizontalOptions="Center"
+                        VerticalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Don't have an account? " TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        Text="Sign up"
+                                        TextColor="White" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </stateContainer:StateCondition>
+
+        </stateContainer:StateContainer>
     </ContentPage.Content>
 </ContentPage>

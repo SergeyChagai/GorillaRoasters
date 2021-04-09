@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GorillaRoasters.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,12 @@ namespace GorillaRoasters.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private LoginPageVM _viewModel;
         public LoginPage()
         {
             InitializeComponent();
-            VisualStateManager.GoToState(LoginButton, "NoActive");
-        }
-
-        private void LoginButton_Clicked(object sender, EventArgs e)
-        {
-            VisualStateManager.GoToState(LoginButton, "Active");
+            _viewModel = new LoginPageVM();
+            BindingContext = _viewModel;
         }
     }
 }
