@@ -15,12 +15,13 @@ namespace GorillaRoasters.Pages
         public LoginPage()
         {
             InitializeComponent();
-            VisualStateManager.GoToState(LoginButton, "NoActive");
+            BindingContext = this;
+            VisualStateManager.GoToState(BaseLayout, "Normal");
         }
 
         private void LoginButton_Clicked(object sender, EventArgs e)
         {
-            VisualStateManager.GoToState(LoginButton, "Active");
+            VisualStateManager.GoToState(BaseLayout, "Selected");
         }
     }
 }
