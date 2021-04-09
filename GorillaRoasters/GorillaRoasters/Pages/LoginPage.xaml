@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GorillaRoasters.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BasicLoginButton" TargetType="Button">
+                <Setter Property="Margin" Value="60,15,60,0" />
+                <Setter Property="CornerRadius" Value="40" />
+                <Setter Property="HeightRequest" Value="60" />
+            </Style>
+            <Style
+                x:Key="GradientButton"
+                BasedOn="{StaticResource BasicLoginButton}"
+                TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#65b5e6" />
+                            <GradientStop Offset="1" Color="#6cc8df" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+            <GradientStop Offset="0" Color="{StaticResource GradientsBlueColor}" />
+            <GradientStop Offset="1" Color="{StaticResource GradientsGreenColor}" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                Margin="0,20,0,0"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Sign in to Your Account"
+                TextColor="White"
+                VerticalOptions="Start" />
+            <Image
+                Margin="50,10,20,10"
+                HeightRequest="200"
+                Source="CoffeeLogo" />
+            <Button Style="{StaticResource GradientButton}" Text="Username" />
+            <Button Style="{StaticResource GradientButton}" Text="Password" />
+            <Button
+                x:Name="LoginButton"
+                Clicked="LoginButton_Clicked"
+                Style="{StaticResource BasicLoginButton}"
+                Text="Log in"
+                TextColor="{StaticResource GradientsBlueColor}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Focused">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Black" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            <Label
+                Margin="0,0,0,40"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Don't have an account? " TextColor="White" />
+                            <Span
+                                FontAttributes="Bold"
+                                Text="Sign up"
+                                TextColor="White" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,6 +9,12 @@
             <Color x:Key="ButtonColor">
                 #cabaa3
             </Color>
+            <Color x:Key="GradientsBlueColor">
+                #407cf8
+            </Color>
+            <Color x:Key="GradientsGreenColor">
+                #66f4c4
+            </Color>
             <Style x:Key="BasicButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextTransform" Value="None" />

@@ -1,3 +1,4 @@
+using GorillaRoasters.Pages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,7 +11,7 @@ namespace GorillaRoasters
         {
             InitializeComponent();
 
-            MainPage = new ShellPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
