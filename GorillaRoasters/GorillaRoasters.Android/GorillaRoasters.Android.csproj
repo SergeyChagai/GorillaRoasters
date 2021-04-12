@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="ButtonFrameRenderer.cs" />
     <Compile Include="CoffeeFrameRenderer.cs" />
+    <Compile Include="Effects\ButtonFocusedEffect.cs" />
     <Compile Include="GradientButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RatingViewRenderer.cs" />
