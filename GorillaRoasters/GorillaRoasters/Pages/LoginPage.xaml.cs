@@ -26,6 +26,8 @@ namespace GorillaRoasters.Pages
             await Navigation.PopModalAsync();
         }
 
+
+        //TO DO: write logic background for switch, data save must go if toggled only 
         private async void UsernameButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.Username = await SecureStorage.GetAsync(nameof(_viewModel.Username));
@@ -38,6 +40,11 @@ namespace GorillaRoasters.Pages
             _viewModel.Password = await SecureStorage.GetAsync(nameof(_viewModel.Password));
             var result = await DisplayPromptAsync("Password", "Enter your password", "OK", "Cancel", "Password", -1, Keyboard.Text, _viewModel.Password);
             await SecureStorage.SetAsync(nameof(_viewModel.Password), result == null ? "" : result);
+        }
+
+        private void Switch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            RememberSwitch.ThumbColor = RememberSwitch.IsToggled ? Color.LightGreen : Color.LightGray;
         }
     }
 }

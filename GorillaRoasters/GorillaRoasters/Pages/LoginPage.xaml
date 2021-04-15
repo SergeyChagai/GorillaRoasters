@@ -10,9 +10,9 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="BasicLoginButton" TargetType="Button">
-                <Setter Property="Margin" Value="60,15,60,0" />
+                <Setter Property="Margin" Value="60,10,60,0" />
                 <Setter Property="CornerRadius" Value="40" />
-                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="55" />
             </Style>
             <Style
                 x:Key="GradientButtonWhenConnected"
@@ -97,6 +97,20 @@
                         Style="{StaticResource BasicLoginButton}"
                         Text="Log in"
                         TextColor="{StaticResource GradientsBlueColor}" />
+                    <StackLayout
+                        Margin="0,10,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="16"
+                            Text="Remember me"
+                            TextColor="White" />
+                        <Switch
+                            x:Name="RememberSwitch"
+                            IsToggled="{Binding IsToggled}"
+                            OnColor="LightGreen"
+                            PropertyChanged="Switch_PropertyChanged" />
+                    </StackLayout>
                     <Label
                         Margin="0,0,0,40"
                         HorizontalOptions="Center"

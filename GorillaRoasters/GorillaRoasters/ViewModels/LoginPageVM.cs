@@ -1,4 +1,5 @@
 ﻿using GorillaRoasters.StateContainers.LoginPageSC;
+using GorillaRoasters.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,32 @@ namespace GorillaRoasters.ViewModels
 {
     public class LoginPageVM : INotifyPropertyChanged
     {
-        public string Username { get; set; }
+        private bool _isToggled;
+        public bool IsToggled 
+        { 
+            get => _isToggled;
+            set
+            {
+                _isToggled = value;
+                NotifyPropertyChanged(nameof(IsToggled));
+            }
+        }
+        private string _userName;
+        public string Username 
+        {
+            get => _userName;
+            set
+            {
+                if (RegularExpressionUtilities.IsValidEmail(value))
+                {
+                    _userName = value;
+                }
+                else _userName = "";
+            }
+        }
+
+       
+
         public string Password { get; set; }
 
         public ICommand SetLoginDataCommand { get; set; }
