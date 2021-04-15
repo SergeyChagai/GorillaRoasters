@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GorillaRoasters
+namespace GorillaRoasters.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StarWarsPage : ContentPage

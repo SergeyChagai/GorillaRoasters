@@ -14,7 +14,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ResolutionGroupName("TileMode")]
+[assembly: ResolutionGroupName("App")]
 [assembly: ExportEffect(typeof(ButtonFocusedEffect), nameof(ButtonFocusedEffect))]
 
 namespace GorillaRoasters.Droid.Effects

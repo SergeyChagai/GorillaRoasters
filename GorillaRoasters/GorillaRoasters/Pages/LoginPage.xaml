@@ -4,7 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GorillaRoasters.Effects"
-    xmlns:stateContainer="clr-namespace:GorillaRoasters.StateContainers.LoginPageSC">
+    xmlns:stateContainer="clr-namespace:GorillaRoasters.StateContainers.LoginPageSC"
+    NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="BasicLoginButton" TargetType="Button">
@@ -72,12 +74,18 @@
                         Margin="50,10,20,10"
                         HeightRequest="200"
                         Source="CoffeeLogo" />
-                    <Button Style="{StaticResource GradientButtonWhenConnected}" Text="Username">
+                    <Button
+                        Clicked="UsernameButton_Clicked"
+                        Style="{StaticResource GradientButtonWhenConnected}"
+                        Text="Username">
                         <Button.Effects>
                             <local:ButtonFocusedEffect />
                         </Button.Effects>
                     </Button>
-                    <Button Style="{StaticResource GradientButtonWhenConnected}" Text="Password">
+                    <Button
+                        Clicked="PasswordButton_Clicked"
+                        Style="{StaticResource GradientButtonWhenConnected}"
+                        Text="Password">
                         <Button.Effects>
                             <local:ButtonFocusedEffect />
                         </Button.Effects>
@@ -85,6 +93,7 @@
                     <Button
                         x:Name="LoginButton"
                         BackgroundColor="White"
+                        Clicked="LoginButton_Clicked"
                         Style="{StaticResource BasicLoginButton}"
                         Text="Log in"
                         TextColor="{StaticResource GradientsBlueColor}" />

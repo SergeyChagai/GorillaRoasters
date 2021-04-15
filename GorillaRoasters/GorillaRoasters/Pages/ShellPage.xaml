@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell
-    x:Class="GorillaRoasters.ShellPage"
+    x:Class="GorillaRoasters.Pages.ShellPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:GorillaRoasters">
+    xmlns:pages="clr-namespace:GorillaRoasters.Pages">
+
+
 
     <FlyoutItem Title="CoffeShop" Route="coffeShop">
         <Tab>
@@ -11,14 +13,14 @@
                 <pages:MainPage />
             </ShellContent>
         </Tab>
-
     </FlyoutItem>
+
     <FlyoutItem Title="StarWarsInfo" Route="starWarsPage">
         <Tab>
             <ShellContent>
                 <pages:StarWarsPage />
             </ShellContent>
         </Tab>
-
     </FlyoutItem>
+
 </Shell>

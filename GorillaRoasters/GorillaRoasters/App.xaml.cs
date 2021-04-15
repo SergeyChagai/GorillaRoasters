@@ -11,7 +11,8 @@ namespace GorillaRoasters
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new ShellPage();
+            MainPage.Navigation.PushModalAsync(new LoginPage());
         }
 
         protected override void OnStart()

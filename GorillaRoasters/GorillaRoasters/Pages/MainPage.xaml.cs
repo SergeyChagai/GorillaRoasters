@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using GorillaRoasters.Models;
+using Xamarin.Essentials;
 
-namespace GorillaRoasters
+namespace GorillaRoasters.Pages
 {
     public partial class MainPage : ContentPage
     {
@@ -19,7 +20,6 @@ namespace GorillaRoasters
             ViewModel = new MainPageVM();
             InitializeComponent();
             BindingContext = ViewModel;
-            
         }
 
         private async void OnNextButtonClicked(object sender, EventArgs e)

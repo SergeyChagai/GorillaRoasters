@@ -35,13 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CustumViews\CoffeeFrame.xaml">
+    <EmbeddedResource Update="CustomViews\CoffeeFrame.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="CustumViews\RatingPopup.xaml">
+    <EmbeddedResource Update="CustomViews\RatingPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="CustumViews\RatingView.xaml">
+    <EmbeddedResource Update="CustomViews\RatingView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\LoginPage.xaml">

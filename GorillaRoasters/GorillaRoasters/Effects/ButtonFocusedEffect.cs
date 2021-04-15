@@ -7,7 +7,7 @@ namespace GorillaRoasters.Effects
 {
     public class ButtonFocusedEffect : RoutingEffect
     {
-        public ButtonFocusedEffect() : base($"TileMode.{nameof(ButtonFocusedEffect)}")
+        public ButtonFocusedEffect() : base($"App.{nameof(ButtonFocusedEffect)}")
         {
         }
     }
