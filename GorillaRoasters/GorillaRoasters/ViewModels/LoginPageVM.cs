@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,22 +13,8 @@ namespace GorillaRoasters.ViewModels
 {
     public class LoginPageVM : INotifyPropertyChanged
     {
-        public string Username
-        {
-            get => Preferences.Get(nameof(Username), "");
-            set
-            {
-                Preferences.Set(nameof(Username), value);
-            }
-        }
-        public string Password 
-        {
-            get => Preferences.Get(nameof(Password), "");
-            set
-            {
-                Preferences.Set(nameof(Password), value);
-            }
-        }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public ICommand SetLoginDataCommand { get; set; }
         private States _pageStateId;
