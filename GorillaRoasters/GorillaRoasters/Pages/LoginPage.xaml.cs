@@ -21,8 +21,14 @@ namespace GorillaRoasters.Pages
             BindingContext = _viewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.GetLoginData();
+        }
         private async void LoginButton_Clicked(object sender, EventArgs e)
         {
+            _viewModel.SetLoginData();
             await Navigation.PopModalAsync();
         }
 
@@ -30,16 +36,16 @@ namespace GorillaRoasters.Pages
         //TO DO: write logic background for switch, data save must go if toggled only 
         private async void UsernameButton_Clicked(object sender, EventArgs e)
         {
-            _viewModel.Username = await SecureStorage.GetAsync(nameof(_viewModel.Username));
             var result = await DisplayPromptAsync("Username", "Enter your name", "OK", "Cancel", "Username", -1, Keyboard.Email, _viewModel.Username);
-            await SecureStorage.SetAsync(nameof(_viewModel.Username), result == null ? "" : result);
+            _viewModel.Username = result;
+            _viewModel.SetLoginData();
         }
 
         private async void PasswordButton_Clicked(object sender, EventArgs e)
         {
-            _viewModel.Password = await SecureStorage.GetAsync(nameof(_viewModel.Password));
             var result = await DisplayPromptAsync("Password", "Enter your password", "OK", "Cancel", "Password", -1, Keyboard.Text, _viewModel.Password);
-            await SecureStorage.SetAsync(nameof(_viewModel.Password), result == null ? "" : result);
+            _viewModel.Password = result;
+            _viewModel.SetLoginData();
         }
 
         private void Switch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

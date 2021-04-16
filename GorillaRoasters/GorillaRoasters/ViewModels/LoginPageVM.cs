@@ -38,8 +38,6 @@ namespace GorillaRoasters.ViewModels
             }
         }
 
-       
-
         public string Password { get; set; }
 
         public ICommand SetLoginDataCommand { get; set; }
@@ -61,19 +59,38 @@ namespace GorillaRoasters.ViewModels
             }
             else
                 PageStateId = States.Connected;
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-            SetLoginDataCommand = new Command(SetLoginDataCommandExecution);
+            Connectivity.ConnectivityChanged += ChangePageState;
+            Username = "";
+            Password = "";
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private void SetLoginDataCommandExecution()
+        public async void GetLoginData()
         {
-
+            try
+            {
+                Username = await SecureStorage.GetAsync(nameof(Username));
+                Password = await SecureStorage.GetAsync(nameof(Password));
+            }
+            catch { }
         }
-        public void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        public async void SetLoginData()
+        {
+            if(IsToggled)
+            {
+                try
+                {
+                    await SecureStorage.SetAsync(nameof(Username), Username);
+                    await SecureStorage.SetAsync(nameof(Password), Password);
+                }
+                catch { }
+            }
+        }
+
+        public void ChangePageState(object sender, ConnectivityChangedEventArgs e)
         {
             if(e == null) return;
             if (e.NetworkAccess == NetworkAccess.None)
